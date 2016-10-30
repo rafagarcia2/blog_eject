@@ -7,7 +7,7 @@
           <h1>{{  post.title }}</h1>
           <h2>{{  post.subtitle  }}</h2>
           Categoria:
-            <a href="/categoria/{{post.categoria}}">{{post.categoria}} </a>
+            <a href="{{ post.categoria.get_absolute_url }}">{{post.categoria}} </a>
          
           <br>by:
           {% for Editor in post.editor.all %}
@@ -61,7 +61,7 @@
 
               {% for post in postssemelhantes %}
                   <li>
-                    <a href="/post/{{ post.title }}">
+                    <a href="{{ post.get_absolute_url }}">
                       <div class="minipost" style="background-image: url({{post.capa.url}});">
                         <div class="minititulo">
                             <h3>

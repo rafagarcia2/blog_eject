@@ -4,9 +4,13 @@ from django.utils import timezone
 
 class Categoria(models.Model):
     nome = models.CharField('Nome da categoria',max_length=100)
+    slug = models.SlugField('Atalho')
     def __str__(self):
         return self.nome  
-        
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('blog:category_posts', (), {'slug': self.slug})
 
 class Editor(models.Model):
     nome = models.CharField('Nome e Sobrenome do Editor',max_length=100)
@@ -19,6 +23,7 @@ class Editor(models.Model):
 class Post(models.Model):
     editor = models.ManyToManyField(Editor)
     title = models.CharField(max_length=100)
+    slug = models.SlugField('Atalho')
     subtitle = models.CharField(max_length=100,null=True, blank=True)
     capa = models.ImageField('Foto da capa', upload_to='img/', default='static/img/logo.svg')
     nivel = models.PositiveSmallIntegerField(default=1,null=True)
@@ -43,3 +48,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self): 
+        return ('blog:post_detail', (), {'slug': self.slug})

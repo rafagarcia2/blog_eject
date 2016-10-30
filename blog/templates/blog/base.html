@@ -77,7 +77,7 @@
                   </li>
               {% for categoria in categorias %}
                   <li>
-                    <a href="/categoria/{{categoria.nome}}">
+                    <a href="{{ categoria.get_absolute_url }}">
                       {{categoria.nome}}
                     </a>
                   </li>
@@ -126,7 +126,7 @@
                   </li>
               {% for categoria in categorias %}
                   <li>
-                    <a href="/categoria/{{categoria.nome}}">
+                    <a href="{{ categoria.get_absolute_url }}">
                       {{categoria.nome}}
                     </a>
                   </li>

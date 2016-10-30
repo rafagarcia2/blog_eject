@@ -7,14 +7,14 @@ def post_list(request):
     categorias = Categoria.objects.all().order_by('nome')
     return render(request, 'blog/post_list.html', {'posts': posts, 'categorias':categorias})
 
-def post_detail(request, title):
-    post = get_object_or_404(Post, title=title)
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     categorias = Categoria.objects.all().order_by('nome')
-    postssemelhantes = Post.objects.all().filter(categoria=post.categoria,nivel__gt=post.nivel-1).exclude(title=title).order_by('nivel')
+    postssemelhantes = Post.objects.all().filter(categoria=post.categoria,nivel__gt=post.nivel-1).exclude(slug=slug).order_by('nivel')
     return render(request, 'blog/post_detail.html', {'post': post, 'categorias':categorias, 'postssemelhantes':postssemelhantes})
 
-def category_posts(request,nome):
-    categoriaescolhida = get_object_or_404(Categoria, nome=nome)
+def category_posts(request,slug):
+    categoriaescolhida = get_object_or_404(Categoria, slug=slug)
     posts = Post.objects.all().filter(categoria=categoriaescolhida).order_by('-published_date')
     categorias = Categoria.objects.all().order_by('nome')
     return render(request, 'blog/post_list.html', {'posts': posts, 'categorias':categorias, 'categoriaescolhida':categoriaescolhida})
