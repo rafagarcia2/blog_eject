@@ -3,3 +3,6 @@ myvenv
 db.sqlite3
 .DS_Store'
 __pycache__/
+*.py[cod]
+mysite/media/img
+db.sqlite3
