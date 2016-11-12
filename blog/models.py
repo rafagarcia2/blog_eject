@@ -25,6 +25,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField('Atalho')
     subtitle = models.CharField(max_length=100,null=True, blank=True)
+    keywords = models.CharField('Keywords', max_length=150, help_text="Palavras chaves separadas por vírgula", null=True, blank=True)
     capa = models.ImageField('Foto da capa', upload_to='img/', default='static/img/logo.svg')
     nivel = models.PositiveSmallIntegerField(default=1,null=True)
     categoria = models.ForeignKey(Categoria, null=True)

@@ -1,5 +1,12 @@
 {% extends 'blog/base.html' %}
 
+{% block header %}
+  <title>{{ post.title }} - EJECT</title>
+  <meta name="description" content="{{ post.subtitle }}">
+  <meta name="keywords" content="{ post.keywords }">
+  <meta name="author" content="{{ post.editor }}">
+{% endblock %}
+
 {% block content %}
   <article>
         <header>
@@ -22,7 +29,7 @@
           <br>        
           <time class="op-published" datetime="2014-11-11T04:44:16Z">{{ post.published_date }}</time>
           <br>
-          <div class="fb-like" data-href="http://ejectufrn.com.br/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+          <div class="fb-like" data-href="{{ post.get_absolute_url }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
         </header>
         <footer>
           <p>{{post.text1|linebreaks}}</p>
@@ -83,7 +90,7 @@
       		<div class="row" style="padding:0;">
   
         			<!-- <div class="col-xs-12 fb-comments" data-href="http://daniel.ejectufrn.com.br/texto.html" data-numposts="5"></div> -->
-              <div class="col-xs-12 fb-comments" data-href="http://blog.ejectufrn.com.br" data-numposts="5"></div>
+              <div class="col-xs-12 fb-comments" data-href="{{ post.get_absolute_url }}" data-numposts="5"></div>
         		</div>
         	</div>
       </article>
