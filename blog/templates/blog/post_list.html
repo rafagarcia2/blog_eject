@@ -1,22 +1,37 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
 {% block header %}
-  <title>Categorias - EJECT</title>
+  <title>Blog - EJECT</title>
+  <meta name="description" content="Blog da EJECT">
+  <meta name="keywords" content="blog,eject,site,software,empresa,júnior,da,escola,de,ciencias,e,tecnologia,ect,cet">
+  <meta name="og:description" content="Blog da EJECT">
+  <meta name="og:keywords" content="blog,eject,site,software,empresa,júnior,da,escola,de,ciencias,e,tecnologia,ect,cet">
+  <meta property="og:title" content="Blog - EJECT">
+  <meta property="og:url" content="{% static 'img/iconeject.png' %}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="200">
+  <meta property="og:image:height" content="200">
 {% endblock %}
 {% block content %}
-<ul class="col-xs-12" id="postagens">
+<ul class="col-xs-12 animated fadeIn" id="postagens">
 {% if categoriaescolhida %}
-<div class="categoriaescolhida">
+<div class="categoriaescolhida animated fadeIn">
 <h3>Categoria: {{categoriaescolhida.nome}}</h3>
 </div>
 {% endif %}
 {% for post in posts %}
-    <li class="col-xs-6 col-sm-4 col-md-3">
+    <li class="col-xs-12 col-sm-6 animated fadeIn">
       <a href="/post/{{  post.slug }}" class="linkpost">
         <div class="post" style="background-image: url({{post.capa.url}});">
           <div class="titulo">
-              <h3>
+              <h2>
                 {{post.title}}
-              </h3>
+              </h2>
+          </div>
+          <div class="subtitulo">
+              <h5>
+                {{post.subtitle|truncatechars:75}}
+              </h5>
           </div>
         </div>
       </a>

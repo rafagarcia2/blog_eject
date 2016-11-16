@@ -1,4 +1,4 @@
-Django==1.8.5
+#Django==1.8.5
 django-classy-tags==0.7.2
 django-cms==3.3.0
 django-crispy-forms==1.6.0
@@ -10,5 +10,5 @@ django-treebeard==4.0.1
 djangocms-admin-style==1.2.3
 feedparser==5.2.1
 html5lib==0.9999999
-Pillow==3.2.0
+#Pillow==3.2.0
 six==1.10.0
