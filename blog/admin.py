@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Editor, Categoria
+from .models import Post, Editor, Categoria, Email
 from django.db import models
 from django.forms import CheckboxSelectMultiple
 
@@ -13,3 +13,4 @@ class ArtigoAdmin(admin.ModelAdmin):
 admin.site.register(Post,ArtigoAdmin)
 admin.site.register(Editor)
 admin.site.register(Categoria)
+admin.site.register(Email)

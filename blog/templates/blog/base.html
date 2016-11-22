@@ -102,9 +102,11 @@
             <p>
               Quer receber por email?
             </p>
-            <form method="get" id="formemail">
-              <input id="nome" type="text" placeholder="Seu nome"></input>
-              <input type="email" placeholder="seu.email.aqui@porfavor.com"></input>
+            <form action="#" method="post" id="formemail">
+              {% csrf_token %}
+              {% for field in form %}
+                {{ field }}
+              {% endfor %}
               <button type="submit" value="submit" id="btnsend">
                 <img src="{% static 'blog/img/enviar.svg' %}">
               </button>

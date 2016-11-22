@@ -109,3 +109,14 @@ MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 STATIC_URL='/static/'
 STATIC_ROOT= os.path.join(BASE_DIR,'static')
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
+
+
+# E-mails
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'Nome webmaster@localhost'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp'
+EMAIL_HOST_USER = 'rafaelgarcia2013@gmail.com'
+EMAIL_HOST_PASSWORD = 'email'
+EMAIL_PORT = 587

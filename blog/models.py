@@ -1,24 +1,41 @@
 from django.db import models
 from django import forms
 from django.utils import timezone
+import os
+from uuid import uuid4
+
+# ------------ Rename Uploaded Image ----------- #
+def path_and_rename(instance, filename):
+    upload_to = 'img'
+    ext = filename.split('.')[-1]
+    # get filename
+    if instance.pk:
+        filename = '{}.{}'.format(instance.pk, ext)
+    else:
+        # set filename as random string
+        filename = '{}.{}'.format(uuid4().hex, ext)
+    # return the whole path to the file
+    return os.path.join(upload_to, filename)
+
+# ---------- Models ------------ #
 
 class Categoria(models.Model):
     nome = models.CharField('Nome da categoria',max_length=100)
     slug = models.SlugField('Atalho')
     def __str__(self):
-        return self.nome  
-    
+        return self.nome
+
     @models.permalink
     def get_absolute_url(self):
         return ('blog:category_posts', (), {'slug': self.slug})
 
 class Editor(models.Model):
-    nome = models.CharField('Nome e Sobrenome do Editor',max_length=100)
+    nome = models.CharField('Nome e Sobrenome do Editor', max_length=100)
     facebooklink = models.CharField('Link do Facebook pessoal', max_length=200, null=True, blank=True)
-      
+
     def __str__(self):
-        return self.nome  
-        
+        return self.nome
+
 
 class Post(models.Model):
     editor = models.ManyToManyField(Editor)
@@ -51,9 +68,12 @@ class Post(models.Model):
         return self.title
 
     @models.permalink
-    def get_absolute_url(self): 
+    def get_absolute_url(self):
         return ('blog:post_detail', (), {'slug': self.slug})
 
 class Email(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField()
+
+    def __str__(self):
+        return self.nome
