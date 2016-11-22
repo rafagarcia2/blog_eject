@@ -1,6 +1,7 @@
 from django.utils import timezone
 from .models import Post, Categoria, Editor
 from django.shortcuts import render, get_object_or_404
+from django.views.generic.edit import CreateView
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -18,3 +19,8 @@ def category_posts(request,slug):
     posts = Post.objects.all().filter(categoria=categoriaescolhida).order_by('-published_date')
     categorias = Categoria.objects.all().order_by('nome')
     return render(request, 'blog/post_list.html', {'posts': posts, 'categorias':categorias, 'categoriaescolhida':categoriaescolhida})
+
+# class MailSaveView(CreateView):
+#     model = Email
+#     fields = ['nome', 'email']
+#     template_name = 'blogs/teste_ReceberId.html'

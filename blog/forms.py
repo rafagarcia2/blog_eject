@@ -8,3 +8,8 @@ class LeadForm(forms.Form):
 
    def __str__(self):
         return self.name
+
+class MailForm(ModelForm):
+	class Meta:
+		model = Mail
+		fields = ['nome', 'email']

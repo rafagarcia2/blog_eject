@@ -26,7 +26,7 @@ class Post(models.Model):
     slug = models.SlugField('Atalho')
     subtitle = models.CharField(max_length=100,null=True, blank=True)
     keywords = models.CharField('Keywords', max_length=150, help_text="Palavras chaves separadas por vírgula", null=True, blank=True)
-    capa = models.ImageField('Foto da capa', upload_to='img/', default='static/img/logo.svg')
+    capa = models.ImageField('Foto da capa', upload_to='img/', help_text="Palavras chaves separadas por vírgula", default='static/img/logo.svg')
     nivel = models.PositiveSmallIntegerField(default=1,null=True)
     categoria = models.ForeignKey(Categoria, null=True)
     text1 = models.TextField()
@@ -53,3 +53,7 @@ class Post(models.Model):
     @models.permalink
     def get_absolute_url(self): 
         return ('blog:post_detail', (), {'slug': self.slug})
+
+class Email(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()

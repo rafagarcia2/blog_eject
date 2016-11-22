@@ -3,13 +3,17 @@
 {% block header %}
   <title>{{ post.title }} - EJECT</title>
   <meta name="description" content="{{ post.subtitle }}">
-  <meta name="keywords" content="{ post.keywords }">
-  <meta name="author" content="{{ post.editor }}">
+  <meta name="keywords" content="{{ post.keywords }}">
+  <meta name="og:description" content="{{ post.subtitle }}">
+  <meta name="og:keywords" content="{{ post.keywords }}">
+  <meta property="og:title" content="{{ post.title }}">
+  <meta property="og:url" content="{{ post.get_absolute_url }}">
+  <meta property="og:image" content="{{post.capa.url}}">
 {% endblock %}
 
 {% block content %}
-  <article>
-        <header>
+  <article class="animated fadeIn">
+        <header class="animated fadeIn">
           <!-- The title and subtitle shown in your Instant Article -->
           <h1>{{  post.title }}</h1>
           <h2>{{  post.subtitle  }}</h2>
@@ -29,9 +33,9 @@
           <br>        
           <time class="op-published" datetime="2014-11-11T04:44:16Z">{{ post.published_date }}</time>
           <br>
-          <div class="fb-like" data-href="{{ post.get_absolute_url }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+          <div class="fb-like animated fadeIn" data-href="{{ post.get_absolute_url }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
         </header>
-        <footer>
+        <footer class="textopostagem">
           <p>{{post.text1|linebreaks}}</p>
           {%if post.picture1%}
             <figure>
@@ -61,11 +65,10 @@
       </article>
 
       {%if postssemelhantes%}
-      <article style="margin-top: 15px;margin-bottom: 15px;">
-        <div id="categoriassemelhantes">
+      <article class="animated fadeIn" style="margin-top: 15px;margin-bottom: 15px;">
+        <div id="categoriassemelhantes" class="animated fadeIn">
           Veja textos relacionados:
-          <ul>
-
+          <ul class="animated fadeIn">
               {% for post in postssemelhantes %}
                   <li>
                     <a href="{{ post.get_absolute_url }}">
@@ -84,13 +87,13 @@
         </div>
       </article>
       {%endif%}
-      <article>
+      <article class="animated fadeIn">
       	<div class="container" style="width:initial; padding:0;">
 
       		<div class="row" style="padding:0;">
   
-        			<!-- <div class="col-xs-12 fb-comments" data-href="http://daniel.ejectufrn.com.br/texto.html" data-numposts="5"></div> -->
-              <div class="col-xs-12 fb-comments" data-href="{{ post.get_absolute_url }}" data-numposts="5"></div>
+        			<div class="col-xs-12 fb-comments animated fadeIn" data-href="http://blog.ejectufrn.com.br{{ post.get_absolute_url }}" data-numposts="5"></div>
+              <!--<div class="col-xs-12 fb-comments" data-href="{{ post.get_absolute_url }}" data-numposts="5"></div>-->
         		</div>
         	</div>
       </article>
