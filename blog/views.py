@@ -1,6 +1,6 @@
 from django.utils import timezone
 from .models import Post, Categoria, Editor, Email
-from .forms import LeadForm
+from .forms import LeadForm, MailForm
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView
 
@@ -50,3 +50,17 @@ def category_posts(request,slug):
         form = LeadForm()
     context['form'] = form
     return render(request, 'blog/post_list.html', context)
+
+def page_mails(request):
+    # users = Email.objects.get()
+    context = {}
+    if request.method == 'POST':
+        formulario = MailForm(request.POST)
+        if formulario.is_valid():
+            context['is_valid'] = True
+            formulario.my_send_mail()
+            formulario = MailForm()
+    else:
+        formulario = MailForm()
+    context['formulario'] = formulario
+    return render(request, 'blog/page_mail.html', context)
