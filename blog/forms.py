@@ -15,17 +15,3 @@ class LeadForm(forms.Form):
 
    def __str__(self):
         return self.name
-
-class MailForm(forms.Form):
-    assunto = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'placeholder': 'Assunto do E-mail'}))
-    mensagem = forms.CharField(widget=forms.Textarea)
-
-    def my_send_mail(self):
-        context = {
-            'assunto': self.cleaned_data['assunto'],
-            'mensagem': self.cleaned_data['mensagem'],
-        }
-        users = Email.objects.all()
-        for user in users:
-            send_mail(context['assunto'], context['mensagem'],
-            settings.DEFAULT_FROM_EMAIL, [user.email])

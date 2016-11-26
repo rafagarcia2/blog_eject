@@ -77,3 +77,8 @@ class Email(models.Model):
 
     def __str__(self):
         return self.nome
+
+# Responsavel pelo envio dos E-mails
+class EnviarEmail(models.Model):
+    assunto = models.CharField(max_length=200)
+    texto = models.TextField()
